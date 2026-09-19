@@ -1,0 +1,67 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    name: Unit suite (SQLite)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install project with dev extras
+        run: pip install -e ".[dev]"
+
+      - name: Run test suite
+        run: python -m pytest -q
+
+  postgres-rls:
+    # STUB (ADR-0004): activates when the SQLAlchemy layer gets Postgres testing support.
+    # The dev slice runs on SQLite; this job exists so the AT01 cross-tenant negative
+    # suite can be executed against a real Postgres (with the docs/migrations/
+    # 001_postgres_rls.sql RLS migration applied) before any customer pilot.
+    name: AT01 tenant isolation (Postgres RLS)
+    runs-on: ubuntu-latest
+    continue-on-error: true
+
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: nhi
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install project with dev extras + Postgres driver
+        run: |
+          pip install -e ".[dev]"
+          pip install "psycopg[binary]"
+
+      - name: Apply RLS migration (pilot gate)
+        run: |
+          PGPASSWORD=postgres psql -h localhost -U postgres -d nhi \
+            -f docs/migrations/001_postgres_rls.sql || \
+            echo "migration not applied yet - job is a stub"
+
+      - name: Run AT01 tenant isolation suite against Postgres
+        env:
+          NHI_DB_URL: postgresql://postgres:postgres@localhost:5432/nhi
+        run: python -m pytest tests/test_tenant_isolation.py -q

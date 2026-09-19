@@ -1,0 +1,147 @@
+{
+ "schema_version": "1.0",
+ "source": "agent_registry",
+ "producer": "synthetic-import/1.0 (NOT customer data)",
+ "collected_at": "2026-09-18T08:15:00Z",
+ "scope": {
+  "registry": "nw-agents",
+  "observed_window_days": 30
+ },
+ "expected_count": 4,
+ "page_errors": [],
+ "agents": [
+  {
+   "native_id": "agent-research",
+   "display_name": "Research agent",
+   "sponsor": "innovation@demo.nhi",
+   "purpose": "market research summaries",
+   "runtime": "cloud-worker",
+   "capabilities": [
+    "read:repo",
+    "read:identity",
+    "net:egress"
+   ],
+   "lifecycle": "active",
+   "registered": true
+  },
+  {
+   "native_id": "agent-research-child",
+   "display_name": "Research child",
+   "sponsor": null,
+   "purpose": null,
+   "runtime": "cloud-worker",
+   "capabilities": [
+    "read:repo",
+    "read:identity",
+    "net:egress",
+    "tool:mcp_client"
+   ],
+   "parent_native_id": "agent-research",
+   "lifecycle": "active",
+   "registered": true
+  },
+  {
+   "native_id": "agent-ops",
+   "display_name": "Ops agent",
+   "sponsor": null,
+   "purpose": null,
+   "runtime": "on-prem",
+   "capabilities": [
+    "write:ticket"
+   ],
+   "lifecycle": "active",
+   "registered": true
+  },
+  {
+   "native_id": "agent-shadow-7",
+   "display_name": "unknown helper",
+   "sponsor": null,
+   "purpose": null,
+   "runtime": "unknown",
+   "capabilities": [
+    "read:repo"
+   ],
+   "lifecycle": "active",
+   "registered": false,
+   "attributes": {
+    "observed_via": "gateway sample",
+    "first_observed": "2026-09-01"
+   }
+  }
+ ],
+ "credentials": [
+  {
+   "identity_native_id": "agent-research",
+   "kind": "agent_token",
+   "status": "enabled",
+   "created_at": "2025-01-01T00:00:00Z",
+   "expires_at": null
+  }
+ ],
+ "ownership": [
+  {
+   "identity_native_id": "agent-research",
+   "owner_email": "innovation@demo.nhi",
+   "role": "business",
+   "verified": true
+  },
+  {
+   "identity_native_id": "agent-research",
+   "owner_email": "ai-sre@demo.nhi",
+   "role": "technical",
+   "verified": true
+  }
+ ],
+ "relationships": [
+  {
+   "src": "agent-research",
+   "dst": "agent-research-child",
+   "relationship": "delegates_to",
+   "conditions": {}
+  }
+ ],
+ "attributes_extra": {
+  "mcp_endpoints": [
+   {
+    "endpoint": "https://mcp-tools.internal.example/sse",
+    "auth": "none",
+    "manifest_digest": null,
+    "approved": false,
+    "sensitivity": "sensitive"
+   },
+   {
+    "endpoint": "https://mcp-search.vendor.example/mcp",
+    "auth": "oauth",
+    "audience": "https://wrong-audience.example",
+    "issuer": "https://trusted.example",
+    "approved": true,
+    "sensitivity": "internal"
+   }
+  ],
+  "egress_policy": {
+   "agent-research": {
+    "allowlist": [
+     "https://mcp-search.vendor.example",
+     "https://api.internal.example"
+    ]
+   },
+   "agent-research-child": {
+    "allowlist": []
+   }
+  },
+  "approved_audiences": [
+   "https://mcp-search.vendor.example"
+  ],
+  "kill_switch": {
+   "configured": false
+  },
+  "manifest_digests": {
+   "approved": {
+    "https://mcp-search.vendor.example/mcp": "sha256:aaa"
+   },
+   "observed": {
+    "https://mcp-search.vendor.example/mcp": "sha256:aaa"
+   }
+  }
+ }
+}

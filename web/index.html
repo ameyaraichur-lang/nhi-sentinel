@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <title>NHI Sentinel - Mission Control</title>
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%237BAAFF' d='M12 2l8 3v6c0 5-3.4 9.4-8 11-4.6-1.6-8-6-8-11V5l8-3z'/%3E%3C/svg%3E">
+</head>
+<body>
+  <!-- UX24: persistent synthetic-data banner on every page -->
+  <div id="demo-banner" class="demo-banner" role="note">
+    <span class="demo-banner-dot" aria-hidden="true"></span>
+    Synthetic demo data - not customer facts
+  </div>
+
+  <!-- Login renders here when unauthenticated -->
+  <div id="login-root" hidden></div>
+
+  <!-- Application shell (sidebar + header + main) -->
+  <div id="app-shell" class="app-shell" hidden>
+    <aside id="sidebar" class="sidebar" aria-label="Primary navigation"></aside>
+    <div class="app-main">
+      <header id="topbar" class="topbar"></header>
+      <main id="view" class="view" tabindex="-1"></main>
+    </div>
+  </div>
+
+  <div id="toasts" class="toasts" aria-live="polite" aria-atomic="false"></div>
+  <div id="drawer-root"></div>
+  <div id="dialog-root"></div>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

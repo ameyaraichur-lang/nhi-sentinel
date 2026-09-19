@@ -1,0 +1,46 @@
+{
+ "schema_version": "1.0",
+ "source": "github",
+ "producer": "synthetic-import/1.0 (NOT customer data)",
+ "collected_at": "2026-09-18T08:10:00Z",
+ "scope": {"org": "northwind-demo", "repos": ["payments-api", "docs-site"]},
+ "expected_count": 2,
+ "page_errors": [],
+ "identities": [
+  {"native_id": "app:nw-ci-bot", "authority": "northwind-demo", "display_name": "nw-ci-bot",
+   "id_type": "app_installation", "attributes": {}},
+  {"native_id": "deploykey:payments-api", "authority": "northwind-demo",
+   "display_name": "payments-api deploy key", "id_type": "deploy_key", "attributes": {}}
+ ],
+ "credentials": [
+  {"identity_native_id": "deploykey:payments-api", "kind": "deploy_key", "status": "enabled",
+   "created_at": "2026-01-10T00:00:00Z", "expires_at": null,
+   "attributes": {"read_only": false, "repos": ["payments-api", "legacy-billing"]}}
+ ],
+ "ownership": [
+  {"identity_native_id": "app:nw-ci-bot", "owner_email": "devops@demo.nhi",
+   "role": "technical", "verified": true}
+ ],
+ "relationships": [
+  {"src": "app:nw-ci-bot", "dst": "deploykey:payments-api", "relationship": "can_access",
+   "conditions": {}}
+ ],
+ "workflows": [
+  {"repo": "payments-api", "name": "deploy", "path": ".github/workflows/deploy.yml",
+   "permissions": {"contents": "write", "deployments": "write", "id-token": "write"},
+   "triggers": ["pull_request_target"],
+   "actions": [{"ref": "actions/checkout@v4", "pinned": false},
+                {"ref": "aws-actions/configure-aws-credentials@v4", "pinned": false}]},
+  {"repo": "docs-site", "name": "build", "path": ".github/workflows/build.yml",
+   "permissions": {"contents": "read"}, "triggers": ["push"],
+   "actions": [{"ref": "actions/checkout@8f4b7f84864484a7bf31766abe9204da3cbe65b3",
+     "pinned": true}]}
+ ],
+ "secret_candidates": [
+  {"repo": "payments-api", "path": "config/legacy.ini", "pattern": "aws_access_key_id",
+   "context": "lines 4-6", "confidence": "high", "matched_value": "AKIAIOSFODNN7EXAMPLE"},
+  {"repo": "docs-site", "path": "notes.md", "pattern": "generic_api_token",
+   "context": "line 22 (backtick-quoted string in prose)", "confidence": "low",
+   "matched_value": "GH-EXAMPLE-TOKEN-NOT-REAL-0001"}
+ ]
+}

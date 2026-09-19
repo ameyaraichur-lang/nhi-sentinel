@@ -1,0 +1,31 @@
+[project]
+name = "nhi-sentinel"
+version = "0.1.0"
+description = "NHI Sentinel - evidence-led non-human identity assessment and continuous posture monitoring (blueprint v2 vertical slice)"
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi>=0.110",
+  "uvicorn>=0.29",
+  "sqlalchemy>=2.0",
+  "pydantic>=2.6",
+  "pydantic-settings>=2.2",
+  "python-multipart>=0.0.9",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "httpx>=0.27", "pytest-asyncio>=0.23"]
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+# Flat layout contains non-package dirs (web/, fixtures/, data/), so auto-discovery
+# is ambiguous; pin the distribution to the application package only.
+# web/ and fixtures/ ship as repo/runtime assets (copied in the Dockerfile), not package data.
+[tool.setuptools.packages.find]
+include = ["nhi_sentinel*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+filterwarnings = ["ignore::DeprecationWarning"]

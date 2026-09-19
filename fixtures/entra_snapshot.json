@@ -1,0 +1,45 @@
+{
+ "schema_version": "1.0",
+ "source": "entra",
+ "producer": "synthetic-import/1.0 (NOT customer data)",
+ "collected_at": "2026-09-18T08:05:00Z",
+ "scope": {"tenant": "northwind-demo"},
+ "expected_count": 3,
+ "page_errors": [{"page": "signins",
+   "error": "403 InsufficientPrivileges: sign-in audit requires additional consent"}],
+ "identities": [
+  {"native_id": "sp-reporting-app", "authority": "northwind-demo",
+   "display_name": "reporting-app <script>alert(1)</script>", "id_type": "service_principal",
+   "attributes": {}},
+  {"native_id": "sp-backup-sync", "authority": "northwind-demo",
+   "display_name": "backup-sync", "id_type": "service_principal", "attributes": {}},
+  {"native_id": "sp-vendor-analytics", "authority": "northwind-demo",
+   "display_name": "vendor-analytics", "id_type": "service_principal", "attributes": {}}
+ ],
+ "credentials": [
+  {"identity_native_id": "sp-reporting-app", "kind": "client_secret", "status": "enabled",
+   "created_at": "2025-12-01T00:00:00Z", "expires_at": "2027-12-01T00:00:00Z",
+   "last_rotated_at": "2025-12-01T00:00:00Z"}
+ ],
+ "ownership": [
+  {"identity_native_id": "sp-reporting-app", "owner_email": "bi-owner@demo.nhi",
+   "role": "business", "verified": true},
+  {"identity_native_id": "sp-vendor-analytics", "owner_email": "marketing-owner@demo.nhi",
+   "role": "business", "verified": true},
+  {"identity_native_id": "sp-vendor-analytics", "owner_email": "data-sre@demo.nhi",
+   "role": "technical", "verified": true}
+ ],
+ "relationships": [],
+ "grants": [
+  {"app_native_id": "sp-reporting-app", "scopes": ["Mail.ReadWrite", "Files.ReadWrite.All"],
+   "delegated": false, "consent_record": {"recorded": "2026-01-15", "purpose": null},
+   "publisher_domain": "northwind-demo", "multi_tenant": false},
+  {"app_native_id": "sp-backup-sync", "scopes": ["Directory.Read.All"], "delegated": false,
+   "consent_record": {"recorded": "2026-02-01", "purpose": "backup sync", "reviewed": false},
+   "publisher_domain": "3rd-party-vendor.example", "multi_tenant": true},
+  {"app_native_id": "sp-vendor-analytics", "scopes": ["Reports.Read.All"], "delegated": false,
+   "consent_record": {"recorded": "2026-03-10", "purpose": "marketing analytics",
+                      "reviewed": true},
+   "publisher_domain": "vendor-analytics.example", "multi_tenant": true}
+ ]
+}

@@ -1,0 +1,22 @@
+# Dev compose: runs the API with the repo bind-mounted so edits show up on
+# restart (uvicorn --reload is deliberately NOT enabled by default; the worker
+# engine ticks are timing-sensitive in tests). Demo data persists in the
+# nhi_data volume, not in the repo checkout (matches .gitignore data/).
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: nhi-sentinel:dev
+    ports:
+      - "8650:8650"
+    volumes:
+      - .:/app          # mount the repo over the baked-in copy (dev loop)
+      - nhi_data:/data  # NHI_DATA_DIR - synthetic demo DB lives here
+    environment:
+      NHI_DATA_DIR: /data
+      NHI_WEB_DIR: /app/web
+      NHI_FIXTURE_DIR: /app/fixtures
+
+volumes:
+  nhi_data:

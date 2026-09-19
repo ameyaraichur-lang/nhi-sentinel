@@ -1,0 +1,151 @@
+[
+  {
+    "name": "nhi-sentinel",
+    "version": "0.1.0",
+    "purl": "pkg:pypi/nhi-sentinel@0.1.0",
+    "license": null,
+    "dependencies": [
+      "fastapi>=0.110",
+      "uvicorn>=0.29",
+      "sqlalchemy>=2.0",
+      "pydantic>=2.6",
+      "pydantic-settings>=2.2",
+      "python-multipart>=0.0.9"
+    ]
+  },
+  {
+    "name": "fastapi",
+    "version": "0.141.1",
+    "purl": "pkg:pypi/fastapi@0.141.1",
+    "license": "MIT",
+    "dependencies": [
+      "starlette>=0.46.0",
+      "pydantic>=2.9.0",
+      "typing-extensions>=4.8.0",
+      "typing-inspection>=0.4.2",
+      "annotated-doc>=0.0.2",
+      "fastapi-cli[standard]>=0.0.32; extra == \"standard\"",
+      "fastar>=0.9.0; extra == \"standard\"",
+      "httpx<1.0.0,>=0.23.0; extra == \"standard\"",
+      "jinja2>=3.1.5; extra == \"standard\"",
+      "python-multipart>=0.0.18; extra == \"standard\"",
+      "email-validator>=2.0.0; extra == \"standard\"",
+      "uvicorn[standard]>=0.12.0; extra == \"standard\"",
+      "pydantic-settings>=2.0.0; extra == \"standard\"",
+      "pydantic-extra-types>=2.0.0; extra == \"standard\"",
+      "fastapi-cli[standard-no-fastapi-cloud-cli]>=0.0.32; extra == \"standard-no-fastapi-cloud-cli\"",
+      "httpx<1.0.0,>=0.23.0; extra == \"standard-no-fastapi-cloud-cli\"",
+      "jinja2>=3.1.5; extra == \"standard-no-fastapi-cloud-cli\"",
+      "python-multipart>=0.0.18; extra == \"standard-no-fastapi-cloud-cli\"",
+      "email-validator>=2.0.0; extra == \"standard-no-fastapi-cloud-cli\"",
+      "uvicorn[standard]>=0.12.0; extra == \"standard-no-fastapi-cloud-cli\"",
+      "pydantic-settings>=2.0.0; extra == \"standard-no-fastapi-cloud-cli\"",
+      "pydantic-extra-types>=2.0.0; extra == \"standard-no-fastapi-cloud-cli\"",
+      "fastapi-cli[standard]>=0.0.32; extra == \"all\"",
+      "httpx<1.0.0,>=0.23.0; extra == \"all\"",
+      "jinja2>=3.1.5; extra == \"all\"",
+      "python-multipart>=0.0.18; extra == \"all\"",
+      "itsdangerous>=1.1.0; extra == \"all\"",
+      "pyyaml>=5.3.1; extra == \"all\"",
+      "email-validator>=2.0.0; extra == \"all\"",
+      "uvicorn[standard]>=0.12.0; extra == \"all\"",
+      "pydantic-settings>=2.0.0; extra == \"all\"",
+      "pydantic-extra-types>=2.0.0; extra == \"all\""
+    ]
+  },
+  {
+    "name": "uvicorn",
+    "version": "0.52.4",
+    "purl": "pkg:pypi/uvicorn@0.52.4",
+    "license": "BSD-3-Clause",
+    "dependencies": [
+      "click>=7.0",
+      "h11>=0.8",
+      "typing-extensions>=4.0; python_version < '3.11'",
+      "httptools>=0.8.0; extra == 'standard'",
+      "python-dotenv>=0.13; extra == 'standard'",
+      "pyyaml>=5.1; extra == 'standard'",
+      "uvloop>=0.15.1; (sys_platform != 'win32' and (sys_platform != 'cygwin' and platform_python_implementation != 'PyPy')) and extra == 'standard'",
+      "watchfiles>=0.20; extra == 'standard'",
+      "websockets>=13.0; extra == 'standard'"
+    ]
+  },
+  {
+    "name": "SQLAlchemy",
+    "version": "2.0.52",
+    "purl": "pkg:pypi/sqlalchemy@2.0.52",
+    "license": "MIT",
+    "dependencies": [
+      "importlib-metadata; python_version < \"3.8\"",
+      "greenlet>=1; platform_machine == \"aarch64\" or (platform_machine == \"ppc64le\" or (platform_machine == \"x86_64\" or (platform_machine == \"amd64\" or (platform_machine == \"AMD64\" or (platform_machine == \"win32\" or platform_machine == \"WIN32\")))))",
+      "typing-extensions>=4.6.0",
+      "greenlet>=1; extra == \"asyncio\"",
+      "mypy>=0.910; extra == \"mypy\"",
+      "pyodbc; extra == \"mssql\"",
+      "pymssql; extra == \"mssql-pymssql\"",
+      "pyodbc; extra == \"mssql-pyodbc\"",
+      "mysqlclient>=1.4.0; extra == \"mysql\"",
+      "mysql-connector-python; extra == \"mysql-connector\"",
+      "mariadb!=1.1.10,!=1.1.2,!=1.1.5,>=1.0.1; extra == \"mariadb-connector\"",
+      "cx_oracle>=8; extra == \"oracle\"",
+      "oracledb>=1.0.1; extra == \"oracle-oracledb\"",
+      "psycopg2>=2.7; extra == \"postgresql\"",
+      "pg8000>=1.29.1; extra == \"postgresql-pg8000\"",
+      "greenlet>=1; extra == \"postgresql-asyncpg\"",
+      "asyncpg; extra == \"postgresql-asyncpg\"",
+      "psycopg2-binary; extra == \"postgresql-psycopg2binary\"",
+      "psycopg2cffi; extra == \"postgresql-psycopg2cffi\"",
+      "psycopg>=3.0.7; extra == \"postgresql-psycopg\"",
+      "psycopg[binary]>=3.0.7; extra == \"postgresql-psycopgbinary\"",
+      "pymysql; extra == \"pymysql\"",
+      "greenlet>=1; extra == \"aiomysql\"",
+      "aiomysql>=0.2.0; extra == \"aiomysql\"",
+      "greenlet>=1; extra == \"aioodbc\"",
+      "aioodbc; extra == \"aioodbc\"",
+      "greenlet>=1; extra == \"asyncmy\"",
+      "asyncmy>=0.2.12; extra == \"asyncmy\"",
+      "greenlet>=1; extra == \"aiosqlite\"",
+      "aiosqlite; extra == \"aiosqlite\"",
+      "typing_extensions!=3.10.0.1; extra == \"aiosqlite\"",
+      "sqlcipher3_binary; extra == \"sqlcipher\""
+    ]
+  },
+  {
+    "name": "pydantic",
+    "version": "2.13.5",
+    "purl": "pkg:pypi/pydantic@2.13.5",
+    "license": "MIT",
+    "dependencies": [
+      "annotated-types>=0.6.0",
+      "pydantic-core==2.46.5",
+      "typing-extensions>=4.14.1",
+      "typing-inspection>=0.4.2",
+      "email-validator>=2.0.0; extra == 'email'",
+      "tzdata; (python_version >= '3.9' and platform_system == 'Windows') and extra == 'timezone'"
+    ]
+  },
+  {
+    "name": "pydantic-settings",
+    "version": "2.15.0",
+    "purl": "pkg:pypi/pydantic-settings@2.15.0",
+    "license": "MIT",
+    "dependencies": [
+      "pydantic>=2.7.0",
+      "python-dotenv>=0.21.0",
+      "typing-inspection>=0.4.0",
+      "boto3>=1.35.0; extra == 'aws-secrets-manager'",
+      "azure-identity>=1.16.0; extra == 'azure-key-vault'",
+      "azure-keyvault-secrets>=4.8.0; extra == 'azure-key-vault'",
+      "google-cloud-secret-manager>=2.23.1; extra == 'gcp-secret-manager'",
+      "tomli>=2.0.1; extra == 'toml'",
+      "pyyaml>=6.0.1; extra == 'yaml'"
+    ]
+  },
+  {
+    "name": "python-multipart",
+    "version": "0.0.32",
+    "purl": "pkg:pypi/python-multipart@0.0.32",
+    "license": "Apache-2.0",
+    "dependencies": []
+  }
+]
